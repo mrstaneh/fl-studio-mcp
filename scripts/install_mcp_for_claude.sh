@@ -56,7 +56,7 @@ check_config_status() {
     local config_name="$2"
 
     if [[ -f "$config_file" ]]; then
-        if grep -q "fl-studio" "$config_file" 2>/dev/null; then
+        if grep -q '"fl-studio"' "$config_file" 2>/dev/null; then
             echo -e "  ${GREEN}✓${NC} $config_name: Already configured"
             return 0
         else

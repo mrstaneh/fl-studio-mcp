@@ -34,7 +34,8 @@ function Test-ConfigHasFlStudio {
     if (-not (Test-Path -LiteralPath $ConfigFile)) { return $false }
     $raw = Get-Content -LiteralPath $ConfigFile -Raw -ErrorAction SilentlyContinue
     if (-not $raw) { return $false }
-    return $raw -match "fl-studio"
+    # Match the quoted key, not the substring: the project path "fl-studio-mcp" also appears in .claude.json
+    return $raw -match '"fl-studio"'
 }
 
 function Add-McpToConfig {
